@@ -25,31 +25,31 @@ Imports System.Windows.Navigation
 Imports System.Windows.Shapes
 
 Namespace DXSample
-    Public Class MainViewModel
-        Inherits ViewModelBase
+	Public Class MainViewModel
+		Inherits ViewModelBase
 
-        Public Property Items() As ObservableCollection(Of UserControlViewModel)
+		Public Property Items() As ObservableCollection(Of UserControlViewModel)
 
 
-        Private _SelectedViewModel As UserControlViewModel
-        Public Property SelectedViewModel() As UserControlViewModel
-            Get
-                Return _SelectedViewModel
-            End Get
-            Set(ByVal value As UserControlViewModel)
-                SetProperty(_SelectedViewModel, value, Function() SelectedViewModel)
-                ServiceContainer.GetService(Of INavigationService)().Navigate(SelectedViewModel.ViewName, Nothing, Me)
-            End Set
-        End Property
+		Private _SelectedViewModel As UserControlViewModel
+		Public Property SelectedViewModel() As UserControlViewModel
+			Get
+				Return _SelectedViewModel
+			End Get
+			Set(ByVal value As UserControlViewModel)
+				SetProperty(_SelectedViewModel, value, Function() SelectedViewModel)
+				ServiceContainer.GetService(Of INavigationService)().Navigate(SelectedViewModel.ViewName, Nothing, Me)
+			End Set
+		End Property
 
-        Public Sub New()
-            Items = New ObservableCollection(Of UserControlViewModel)() From { _
-                New UserControlViewModel() With {.ViewName = "UserControl1"}, _
-                New UserControlViewModel() With {.ViewName = "UserControl2"}, _
-                New UserControlViewModel() With {.ViewName = "UserControl3"}, _
-                New UserControlViewModel() With {.ViewName = "HomeView"} _
-            }
+		Public Sub New()
+			Items = New ObservableCollection(Of UserControlViewModel)() From {
+				New UserControlViewModel() With {.ViewName = "UserControl1"},
+				New UserControlViewModel() With {.ViewName = "UserControl2"},
+				New UserControlViewModel() With {.ViewName = "UserControl3"},
+				New UserControlViewModel() With {.ViewName = "HomeView"}
+			}
 
-        End Sub
-    End Class
+		End Sub
+	End Class
 End Namespace
